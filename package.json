@@ -1,0 +1,17 @@
+{
+  "name": "local-tests-pw",
+  "version": "1.0.0",
+  "description": "Playwright e-to-e tests for localcoding.us",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:debug": "playwright test --headed",
+    "report": "playwright show-report "
+
+  },
+  "author": "Artem",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "1.37.1"
+  }
+}
