@@ -10,12 +10,23 @@ test.describe('Authentication & Authorization', () => {
 
         await expect(page.locator('.ant-avatar-square')).toBeVisible()
     })
-    test('Sign in negative-password field empty', async ({page}) => {
+    test('Sign in negative-password field empty1', async ({page}) => {
         await page.goto('https://coding.pasv.us/user/login')
 
         await page.locator('#normal_login_email').fill('artyom.profis@gmail.com')
         await page.locator('#normal_login_password').fill('')
         await page.locator('button[type="submit"]').isDisabled()
+
+        //await expect(page.locator('.ant-form-item-explain-error')).toHaveText('Required')
+    })
+    test.only('Sign in negative-password field empty2', async ({page}) => {
+        await page.goto('https://coding.pasv.us/user/login')
+
+        await page.locator('#normal_login_email').fill('artyom.profis@gmail.com')
+        await page.locator('#normal_login_password').fill('1')
+        await page.keyboard.press('Backspace')
+        await page.locator('.ant-form-item-explain-error').isVisible()
+        //await page.waitForTimeout(5000)
 
         //await expect(page.locator('.ant-form-item-explain-error')).toHaveText('Required')
     })
