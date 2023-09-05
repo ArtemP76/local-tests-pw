@@ -43,4 +43,18 @@ test.describe('Authentication & Authorization', () => {
         //await expect(page.locator('.ant-form-item-explain-error')).toHaveText('Required')
     })
 
+    test('Sign in with not existing credentials', async ({page}) => {
+        await page.goto('https://coding.pasv.us/user/login')
+
+        await page.locator('#normal_login_email').fill('artyom.profis@gmail.com')
+        await page.locator('#normal_login_password').fill('invalid')
+        await page.locator('button[type="submit"]').click()
+
+
+        const toast= await page.locator('.ant-notification-notice-message')
+        await expect(toast).toBeVisible()
+        await expect(toast).toHaveText('User login. Fail')
+
+
+    })
 })
